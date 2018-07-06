@@ -3,11 +3,11 @@ include('config.php');
 include('functions.php');
 
 $counter = 0;
-$max_database = 21982;
+$max_database = 361;
 $mysqli_tainacan = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
 
 //buscando os dados do mhn
-$csvFile = file('mhn.csv');
+$csvFile = file('Aquisicoes2017_ReservaTecnica.csv');
 foreach ($csvFile as $line) {
     $item = str_getcsv($line,';');
     if ($item && count($item) === 34) {
