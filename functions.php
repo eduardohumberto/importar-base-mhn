@@ -1,25 +1,32 @@
 <?php
 
-function update_post($mysqli_tainacan,$post_id, $title, $content){
+function create_post($mysqli_tainacan,$title,$content){
+    $author = AUTHOR;
     $category = CATEGORY_ROOT_ID;
 
-    if ($post_id) {
-        $post = array(
-	    'ID' => $post_id,
-            'post_title' => $title,
-            'post_content' => $content
-        );
-        wp_update_post($post);
+    $post = array(
+        'post_title' =>  $title ,
+        'post_status' => 'publish',
+        'post_content' => $content ,
+        'post_author' => $author,
+        'post_type' => 'socialdb_object',
+        'post_parent' => COLLECTION_ID
+    );
+    $post_id = wp_insert_post($post);
 
-        echo 'atualizando item '. $post_id . PHP_EOL;
-        $mysqli_tainacan->query("DELETE FROM wp_term_relationships WHERE object_id = $post_id;");
+    //// $name = slugify( $title );
+    //$insert = $mysqli_tainacan->query("INSERT INTO wp_posts ( post_author, post_name ,post_title, post_content, post_type,post_status,post_date,post_date_gmt,post_modified,post_modified_gmt,post_excerpt,to_ping,pinged,post_content_filtered)
+    //VALUES ( $author, '$name' , '$title', '$content', 'socialdb_object', 'publish',NOW(),NOW(),NOW(),NOW(),'','','','');");
+    if ($post_id) {
+        //$post_id = $mysqli_tainacan->insert_id;
+        echo 'inserindo item '. $title . PHP_EOL;
         $relantionship = $mysqli_tainacan->query("INSERT INTO wp_term_relationships (object_id, term_taxonomy_id)
              VALUES ( $post_id, $category );");
         if($relantionship !== TRUE){
             echo "Error: " . $relantionship . "<br>" . $mysqli_tainacan->error;
         }
     } else {
-        echo "Error:<br>" . $mysqli_tainacan->error;
+        echo "Error: " . $insert . "<br>" . $mysqli_tainacan->error;
     }
     return $post_id;
 }
