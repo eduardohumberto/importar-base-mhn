@@ -22,10 +22,10 @@ foreach ($csvFile as $line) {
         $title = ucfirst(strtolower( $item[1])  );
         $description = $item[2];
         $codigo_classe = $item[3]; // CLASSE_NUM
-        $Classes = utf8_encode($item[4]); // CLASSE #term
+        $Classes = $item[4]; // CLASSE #term
         $processo = $item[5]; // PROCE
         $fonte = $item[6]; // fonte
-        $aquisicao = $item[7];// AQUI
+        $aquisicao = utf8_decode($item[7]);// AQUI
         $valor = str_replace('.',',', $item[8]); // VALOR
 
         $post_id = create_post($mysqli_tainacan,$title,$description);
@@ -36,7 +36,6 @@ foreach ($csvFile as $line) {
         insert_term( $mysqli_tainacan, $Classes, $post_id,CLASSE_TERM,CLASSE  );
 
         insert_regular_metadata($mysqli_tainacan,$post_id,PATRIMONIO,$patrimonio);
-        insert_regular_metadata($mysqli_tainacan,$post_id,TITULO,$titulo);
         insert_regular_metadata($mysqli_tainacan,$post_id,AQUI,$aquisicao);
         insert_regular_metadata($mysqli_tainacan,$post_id,PROCE,$processo);
         insert_regular_metadata($mysqli_tainacan,$post_id,VALOR,$valor);

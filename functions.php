@@ -72,8 +72,8 @@ function insert_term( $mysqli_tainacan, $name, $item_id, $parent,$property_id ){
     
      if($name === '') return false;
 	
-    //$term = get_term_by('name', $name, 'socialdb_category_type');
-    $term = get_term_by_name_and_parent(utf8_encode(trim($name)),$parent);
+    $term = get_term_by('name', $name, 'socialdb_category_type');
+    //$term = get_term_by_name_and_parent(trim($name),$parent);
     if($term){
         $category = $term->term_id;
     }else if($name === ''){
