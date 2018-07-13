@@ -25,7 +25,7 @@ foreach ($csvFile as $line) {
         $Classes = $item[4]; // CLASSE #term
         $processo = $item[5]; // PROCE
         $fonte = $item[6]; // fonte
-        $aquisicao = html_entity_decode($item[7]);// AQUI
+        $aquisicao = utf8_decode(html_entity_decode($item[7]));// AQUI
         $valor = str_replace('.',',', $item[8]); // VALOR
 
         $post_id = create_post($mysqli_tainacan,$title,$description);
