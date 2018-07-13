@@ -3,13 +3,13 @@
 define( 'WP_USE_THEMES', false);
 
 //SE FOR MULTISITE ESTES PARAMETROS DEVEM SER ALTERADOS
-//$_SERVER['HTTP_HOST'] = 'mhn.medialab.ufg.br';
-//$_SERVER['REQUEST_URI'] = '/';
-$_SERVER['HTTP_HOST'] = 'localhost';
-$_SERVER['REQUEST_URI'] = '/wordpress_tainacan';
+$_SERVER['HTTP_HOST'] = 'mhn.medialab.ufg.br';
+$_SERVER['REQUEST_URI'] = '/';
+//$_SERVER['HTTP_HOST'] = 'localhost';
+//$_SERVER['REQUEST_URI'] = '/wordpress_tainacan';
 
-//include('/home/l3p/apache_sites/mhn.medialab.ufg.br/web/wp-config.php');
-include('/var/www/html/wordpress_tainacan/wp-config.php');
+include('/home/l3p/apache_sites/mhn.medialab.ufg.br/web/wp-config.php');
+//include('/var/www/html/wordpress_tainacan/wp-config.php');
 
 define('CATEGORY_ROOT_ID',6863);
 define('COLLECTION_ID',106);
